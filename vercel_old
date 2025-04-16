@@ -1,0 +1,22 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/app.html",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/app",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/app.html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}

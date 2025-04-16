@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+
+  <title>Wajed bac</title>
+  <!-- The `react-native-web` recommended style reset -->
+  <style id="expo-reset">
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    #root {
+      display: flex;
+      height: 100%;
+      flex: 1;
+    }
+
+    * {
+      touch-action: manipulation;
+      /* Disables pinch-to-zoom and double-tap zoom */
+    }
+  </style>
+  <!-- Loading screen styles -->
+  <style>
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #6464ED;
+      /* Matches your theme-color */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+
+    #loading-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+      /* Allows clicks to pass through when hidden */
+    }
+
+    #loading-screen img {
+      width: 160px;
+      height: 160px;
+      /* No animation, logo stays fixed */
+    }
+
+    #loading-screen span {
+      margin-top: 20px;
+      /* Space between image and text */
+      direction: rtl;
+      /* Right-to-left for Arabic */
+    }
+
+    #loading-screen .dots::after {
+      content: "...";
+      display: inline-block;
+      width: 1em;
+      text-align: left;
+      animation: dots 1.5s steps(4, end) infinite;
+      transform: scaleX(-1);
+      padding-left: 10px;
+    }
+
+    @keyframes dots {
+
+      0%,
+      20% {
+        content: "";
+      }
+
+      40% {
+        content: ".";
+      }
+
+      60% {
+        content: "..";
+      }
+
+      80%,
+      100% {
+        content: "...";
+      }
+    }
+  </style>
+  <meta name="theme-color" content="#6464ED" />
+  <!-- Script to force full browser on page load -->
+  <script>
+    (function () {
+      // Run immediately on page load
+      const ua = navigator.userAgent.toLowerCase();
+      const isIOS = /iphone|ipad|ipod/.test(ua);
+      const isAndroid = /android/.test(ua);
+      const isInAppBrowser = (
+        ua.includes('instagram') ||
+        ua.includes('fban') || ua.includes('fbav') || // Facebook
+        ua.includes('twitter') || // Twitter/X
+        ua.includes('tiktok') || // TikTok
+        ua.includes('wv') || // Generic WebView indicator
+        (ua.includes('safari') === false && ua.includes('chrome') === false && ua.includes('firefox') === false)
+      );
+
+      if (isInAppBrowser) {
+        const currentUrl = window.location.href; // Current URL of the site
+        let externalUrl = currentUrl;
+
+        if (isIOS) {
+          // iOS: Use x-safari- to open in Safari
+          externalUrl = 'x-safari-' + currentUrl;
+        } else if (isAndroid) {
+          // Android: No special scheme needed, just redirect (system opens default browser)
+          externalUrl = currentUrl;
+        }
+
+        // Redirect to the same URL in the default browser
+        window.location.href = externalUrl;
+      }
+    })();
+  </script>
+<link rel="shortcut icon" href="/favicon.ico" /></head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+
+  <!-- Loading screen -->
+  <div id="loading-screen">
+    <img src="./icon_circle.png" alt="Loading Icon" />
+    <span>جاري التحميل<span class="dots"></span></span>
+  </div>
+
+  <div id="root"></div>
+  <!-- <script src="" defer onload="document.getElementById('loading-screen').classList.add('hidden'); setTimeout(() => document.getElementById('loading-screen').remove(), 500);"></script> -->
+  <script src="_expo/static/js/web/index-958f2f920cd4eb99c7c5dbfe98cce8f6.js" defer onload="document.getElementById('loading-screen').classList.add('hidden'); setTimeout(() => document.getElementById('loading-screen').remove(), 500);"></script>
+
+</body>
+
+</html>

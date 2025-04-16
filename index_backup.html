@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Wajed bac</title>
+  <!-- Basic Meta Tags -->
+  <meta name="description" content="Wajed - Prepare for your Bac">
+  <meta name="author" content="Wajed">
+  <meta name="theme-color" content="#6464ED"> <!-- Matches your button color -->
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="manifest" site.webmanifest="/site.webmanifest">
+  <!-- Open Graph (Facebook & Instagram) -->
+  <meta property="og:title" content="Wajed Bac">
+  <meta property="og:description" content="Wajed - Your tool to prepare for your Bac!">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wajed Bac">
+  <meta property="og:url" content="https://wajed.vercel.app">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wajed Bac">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Wajed Bac">
+  <meta name="twitter:description" content="Wajed - Prepare for your Bac">
+  <meta name="twitter:image" content="https://wajed.vercel.app/icon.png">
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .icon {
+      width: 80px;
+      height: 80px;
+      margin: 20px 0;
+      border-radius: 15px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .button-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
+      max-width: 340px;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      color: #fff;
+      background-color: #6464ED;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #4a4ad1;
+    }
+
+    .play-store-button {
+      background-color: #00C853;
+    }
+
+    .play-store-button:hover {
+      background-color: #00a843;
+    }
+
+    .instructions-image {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-agent {
+      margin-top: 15px;
+      font-size: 10px;
+      color: #333;
+      word-wrap: break-word;
+      max-width: 100%;
+      padding: 0 10px;
+    }
+
+    h4 {
+      font-size: 14px;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .play-store-img {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+    }
+
+    /* Media Queries */
+    @media (min-width: 400px) {
+      .icon {
+        width: 100px;
+        height: 100px;
+      }
+
+      .button {
+        font-size: 16px;
+        padding: 15px;
+      }
+
+      .user-agent {
+        font-size: 12px;
+      }
+
+      h4 {
+        font-size: 16px;
+      }
+
+      .play-store-img {
+        max-width: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <img src="./icon.png" alt="App Icon" class="icon" />
+  <div class="button-container" id="buttonContainer">
+    <a href="https://wajed.vercel.app" target="_blank" class="button">How to open the app</a>
+    <img src="./how-to-open-the-app.jpg" class="instructions-image" alt="Instructions" />
+    <h4>or Install the app from</h4>
+    <a href="https://play.google.com/store/apps/details?id=com.wajed.wajed" target="_blank">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Google_Play_Store_badge_FR.svg/2560px-Google_Play_Store_badge_FR.svg.png"
+        class="play-store-img" alt="Get it on Google Play" />
+    </a>
+  </div>
+
+  <!-- <p class="user-agent" id="userAgent"></p> -->
+
+  <script>
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const buttonContainer = document.getElementById("buttonContainer");
+    const userAgentElement = document.getElementById("userAgent");
+
+    if (userAgentElement) {
+      userAgentElement.textContent = "User Agent: " + userAgent;
+    }
+
+    const isInstagram = userAgent.includes("Instagram");
+    const isFacebook = userAgent.includes("FB");
+    const isInAppBrowser = isInstagram || isFacebook;
+
+    if (!isInAppBrowser) {
+      window.open("/app.html", "_blank");
+      window.location.href = "https://wajed.vercel.app/app.html";
+    } else {
+      buttonContainer.style.display = "flex";
+      console.log("Detected Instagram/Facebook in-app browser, showing instructions");
+
+      const imageSource = isInstagram
+        ? "/instructions-instagram-min.png"
+        : "/instructions-facebook-min.png";
+
+      buttonContainer.innerHTML = `
+        <a href="https://wajed.vercel.app" target="_blank" class="button">Open in Browser</a>
+        <img src="${imageSource}" class="instructions-image" alt="Instructions to open in browser">
+        <h4>or Install the app from</h4>
+        <a href="https://play.google.com/store/apps/details?id=com.wajed.wajed" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Google_Play_Store_badge_FR.svg/2560px-Google_Play_Store_badge_FR.svg.png" 
+               class="play-store-img" 
+               alt="Get it on Google Play">
+        </a>
+      `;
+    }
+  </script>
+</body>
+
+</html>
